@@ -76,11 +76,11 @@ StatCompare_OPTIONS = {
 	["MinimapButtonPosition"] = {
 		["default"] = STATCOMPARE_DEFAULT_MINIMAP_POSITION },
 	["ShowMinimapIcon"] = {
-		["default"] = 1 },
+		["default"] = 0 },
 	["ShowSelfFrame"] = {
 		["default"] = 1	},
 	["ShowBuffBonus"] = {
-		["default"] = 0	},
+		["default"] = 1	},
 }
 
 function StatCompare_Toggle()
@@ -98,7 +98,7 @@ function StatCompare_Toggle()
 		getglobal("StatCompareOptTab"..1):LockHighlight();
 		getglobal("StatCompareOptSubFrame"..1):Show();
 		if(StatCompare_Player and StatCompare_Player["Settings"]) then
-			for k,v in StatCompare_Player["Settings"] do
+			for k,v in pairs(StatCompare_Player["Settings"]) do
 				if(getglobal(k)) then
 					if(v == 1) then
 						getglobal(k):SetChecked(1);
@@ -161,7 +161,7 @@ function StatCompareOptTab_OnClick()
 		getglobal("StatCompareOptTab"..id):LockHighlight();
 		getglobal("StatCompareOptSubFrame"..id):Show();
 		if(id == 1 and StatCompare_Player and StatCompare_Player["Settings"]) then
-			for k,v in StatCompare_Player["Settings"] do
+			for k,v in pairs(StatCompare_Player["Settings"]) do
 				if(getglobal(k)) then
 					if(v == 1) then
 						getglobal(k):SetChecked(1);
@@ -185,17 +185,17 @@ function StatCompare_CheckPlayerInfo()
 
 	if ( not StatCompare_Player ) then
 		StatCompare_Player = {};
-		for _,tab in tabs do
+		for _,tab in pairs(tabs) do
 			StatCompare_Player[tab] = { };
 		end
 
 		if ( StatCompare_Info[realmName] and
 			StatCompare_Info[realmName]["Settings"] and
 			StatCompare_Info[realmName]["Settings"][playerName] ) then
-			for _,tab in tabs do
+			for _,tab in pairs(tabs) do
 				if ( StatCompare_Info[realmName][tab] and
 					StatCompare_Info[realmName][tab][playerName] ) then
-					for k,v in StatCompare_Info[realmName][tab][playerName] do
+					for k,v in pairs(StatCompare_Info[realmName][tab][playerName]) do
 						StatCompare_Player[tab][k] = v;
 					end
 				end
@@ -203,7 +203,7 @@ function StatCompare_CheckPlayerInfo()
 		end
 	elseif ( StatCompare_Info[realmName] and StatCompare_Info[realmName]["Settings"] ) then
 		-- the saved information is there, kill the old stuff
-		for _,tab in tabs do
+		for _,tab in pairs(tabs) do
 			if ( StatCompare_Info[realmName][tab] ) then
 				StatCompare_Info[realmName][tab][playerName] = nil;
 				if ( next(StatCompare_Info[realmName][tab]) == nil ) then
@@ -263,8 +263,8 @@ function StatCompare_SaveConfigInfo()
 		StatCompare_Info[realmName]["Settings"] and
 		StatCompare_Info[realmName]["Settings"][playerName] ) then
 		local tabs = { "Settings" };
-		for _,tab in tabs do
-			for k,v in StatCompare_Player[tab] do
+		for _,tab in pairs(tabs) do
+			for k,v in pairs(StatCompare_Player[tab]) do
 				StatCompare_Info[realmName][tab][playerName][k] = v;
 			end
 		end
@@ -297,13 +297,13 @@ function StatCompare_CheckRealm()
 		if ( old ) then
 			if ( not StatCompare_Info[realmName] ) then
 				StatCompare_Info[realmName] = { };
-				for _,tab in tabs do
+				for _,tab in pairs(tabs) do
 					StatCompare_Info[realmName][tab] = { };
 				end
 			end
 				
 			StatCompare_Info[realmName][tab][playerName] = { };
-			for k, v in old do
+			for k, v in pairs(old) do
 				StatCompare_Info[realmName][tab][playerName][k] = v;
 			end
 			StatCompare_Info[tab][playerName] = nil;

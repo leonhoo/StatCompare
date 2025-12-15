@@ -17,7 +17,7 @@
 			</OnEvent>
 		</Scripts>
 	</Frame>
-    <Frame name="StatCompareSelfFrame" frameStrata="LOW" toplevel="true" enableMouse="true" movable="true" hidden="true"  parent="UIParent">
+    <Frame name="StatCompareSelfFrame" frameStrata="MEDIUM" toplevel="true" enableMouse="true" movable="true" hidden="true"  parent="UIParent">
 		<TitleRegion setAllPoints="true"/>
 		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
 			<EdgeSize>
@@ -37,6 +37,15 @@
                         <Anchor point="TOPLEFT" relativeTo="StatCompareSelfFrame" relativePoint="TOPLEFT">
                             <Offset>
                                 <AbsDimension x="10" y="-10"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="PlayerItemGS" inherits="GameTooltipText">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="StatCompareSelfFrame" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="10" y="-30"/>
                             </Offset>
                         </Anchor>
                     </Anchors>
@@ -113,6 +122,15 @@
                         </Anchor>
                     </Anchors>
                 </FontString>
+                <FontString name="TargetItemGS" inherits="GameTooltipText">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="StatCompareTargetFrame" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="10" y="-30"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>				
                 <FontString name="StatCompareTargetFrameText" inherits="GameTooltipText">
                     <Anchors>
                         <Anchor point="BOTTOMLEFT" relativeTo="StatCompareTargetFrame" relativePoint="BOTTOMLEFT">
@@ -331,7 +349,7 @@
 				</Scripts>
 				<FontString inherits="ChatFontNormal"/>
 			</EditBox>
-			<Button name="$parentSetButton" hidden="false" inherits="GameMenuButtonTemplate" text="保存">
+			<Button name="$parentSetButton" hidden="false" inherits="GameMenuButtonTemplate" text="Save">
 				<Size>
 					<AbsDimension x="80" y="27"/>
 				</Size>
@@ -349,7 +367,7 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="$parentCancelButton" hidden="false" inherits="GameMenuButtonTemplate" text="取消">
+			<Button name="$parentCancelButton" hidden="false" inherits="GameMenuButtonTemplate" text="Cancel">
 				<Size>
 					<AbsDimension x="80" y="27"/>
 				</Size>
@@ -446,7 +464,7 @@
 
         <Layers>
             <Layer level="BACKGROUND">
-                <FontString inherits="GameFontHighlight" text="物品收藏">
+                <FontString inherits="GameFontHighlight" text="Favorite">
                     <Size>
                         <AbsDimension x="300" y="14"/>
                     </Size>
@@ -471,7 +489,7 @@
                 </Anchors>
             </Button>
 
-			<Button name="StatCompare_ItemCollection_AddButton" inherits="GameMenuButtonTemplate" text="添加">
+			<Button name="StatCompare_ItemCollection_AddButton" inherits="GameMenuButtonTemplate" text="Add">
 				<Size>
 					<AbsDimension x="50" y="30" />
 				</Size>

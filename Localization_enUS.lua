@@ -26,7 +26,13 @@ function SC_Localization_enUS()
 	STATCOMPARE_SPI = "Spirit";
 	STATCOMPARE_ARMOR = "Armor";
 	STATCOMPARE_ENARMOR = "Reinforced Armor";
+	STATCOMPARE_DAMAGEREDUCEV60 = "Damage Reduce";
+	STATCOMPARE_DAMAGEREDUCEV63 = "Damage Reduce Ex";
 	STATCOMPARE_DAMAGEREDUCE = "Damage Reduce";
+	STATCOMPARE_HASTE = "Haste";
+
+	STATCOMPARE_ARMORPENETRATION = "ArmorPenetration";
+	STATCOMPARE_SPELLPENETRATION = "SpellPenetration";
 
 	STATCOMPARE_ARCANERES	= "Arcane Resistance";	
 	STATCOMPARE_FIRERES	= "Fire Resistance";
@@ -41,7 +47,18 @@ function SC_Localization_enUS()
 	STATCOMPARE_HERBALISM	= "Herbalism";
 	STATCOMPARE_SKINNING	= "Skinning";
 	STATCOMPARE_DEFENSE	= "Defense";
-		
+	STATCOMPARE_STEALTH	= "Stealth";
+	
+	STATCOMPARE_WEAPONSKILL_DAGGER		= "Dagger";
+	STATCOMPARE_WEAPONSKILL_FIST		= "Fist";
+	STATCOMPARE_WEAPONSKILL_ONEHAND_MACE	= "Onehand Mace";
+	STATCOMPARE_WEAPONSKILL_ONEHAND_SWORD	= "Onehand Sword";
+	STATCOMPARE_WEAPONSKILL_ONEHAND_AXE	= "Onehand Axe";
+	STATCOMPARE_WEAPONSKILL_TWOHAND_AXE	= "Twohand Axe";
+	STATCOMPARE_WEAPONSKILL_TWOHAND_SWORD	= "Twohand Sword";
+	STATCOMPARE_WEAPONSKILL_TWOHAND_MACE	= "Twohand Mace";
+	STATCOMPARE_WEAPONSKILL_POLEARMS	= "Polearms";
+
 	STATCOMPARE_BLOCK	= "Block";
 	STATCOMPARE_TOBLOCK	= "Chance to block";
 	STATCOMPARE_DODGE	= "Dodge";
@@ -50,8 +67,12 @@ function SC_Localization_enUS()
 	STATCOMPARE_ATTACKPOWERUNDEAD = "AP against Undead";
 	STATCOMPARE_CRIT	= "Crit. hits";
 	STATCOMPARE_RANGEDATTACKPOWER = "Ranged AP";
+	STATCOMPARE_MELEE_WITH_RANGED_ATTACK_POWER = "Melee/Ranged AP";
+	STATCOMPARE_MELEE_WITH_RANGED_HIT = "Melee/Range Hit";
+	STATCOMPARE_MELEE_WITH_RANGED_CRIT = "Melee/Ranged Crit";
 	STATCOMPARE_RANGEDCRIT	= "Crit. Shots";
 	STATCOMPARE_TOHIT	= "Chance to Hit";
+	STATCOMPARE_RANGEDTOHIT = "Ranged To Hit";
 	STATCOMPARE_DMG		= "Spell Damage";
 	STATCOMPARE_DMGUNDEAD	= "Damage against Undead";
 	STATCOMPARE_ARCANEDMG	= "Arcane Damage";
@@ -62,12 +83,15 @@ function SC_Localization_enUS()
 	STATCOMPARE_SHADOWDMG	= "Shadow Damage";
 	STATCOMPARE_SPELLCRIT	= "Crit. Spell";
 	STATCOMPARE_SPELLTOHIT	= "Chance to Hit with spells";
+	STATCOMPARE_SPELLHEAL = "Spell Healing";
 	STATCOMPARE_HEAL	= "Healing";
 	STATCOMPARE_HOLYCRIT	= "Crit. Holy Spell";
 	STATCOMPARE_NATURECRIT	= "Crit. Nature Spell";
 	STATCOMPARE_HEALTHREG	= "Life Regeneration";
 	STATCOMPARE_MANAREG	= "Mana Regeneration";
 	STATCOMPARE_MANAREGSPI	= "Mana Regen. with Spirit";
+	STATCOMPARE_CASTING_MANA_REG = "Casting Mana Regen";
+	STATCOMPARE_LIFEDRAIN = "Life Drain";
 	STATCOMPARE_HEALTH	= "Life";
 	STATCOMPARE_MANA	= "Mana";
 	STATCOMPARE_DRUID_BEAR	= "Bear Form";
@@ -86,7 +110,6 @@ function SC_Localization_enUS()
 	STATCOMPARE_SET_PREFIX = "Set: ";
 
 	STATCOMPARE_EQUIP_PATTERNS = {
-		{ pattern = "+(%d+) ranged Attack Power%.", effect = "RANGEDATTACKPOWER" },
 		{ pattern = "+(%d+) Stamina%.", effect = "STA" },
 		{ pattern = "+(%d+) Agility%.", effect = "AGI" },
 		{ pattern = "+(%d+) Strength%.", effect = "STR" },
@@ -96,15 +119,33 @@ function SC_Localization_enUS()
 		{ pattern = "+(%d+) Shadow Resistance%.", effect = "SHADOWRES" },
 		{ pattern = "+(%d+) Nature Resistance%.", effect = "NATURERES" },
 		{ pattern = "+(%d+) Frost Resistance%.", effect = "FROSTRES" },
+		{ pattern = "+(%d+) Attack Power%.", effect = {"ATTACKPOWER", "RANGEDATTACKPOWER"}},
 		{ pattern = "+(%d+) Armor%.", effect = "ENARMOR"},
-		{ pattern = "+(%d+) Attack Power%.", effect = "ATTACKPOWER"},
+		{ pattern = "Increases your defense (%d+)。",	effect = "DEFENSE" },
+		{ pattern = "Restores (%d+) health per 5 sec%.", effect = "HEALTHREG" },
+		{ pattern = "Skinning +(%d+)%.", effect = "SKINNING" },
+		{ pattern = "Increased Fishing +(%d+)%.", effect = "FISHING"},
+		{ pattern = "Restores (%d+) health every 5 sec%.", effect = "HEALTHREG" },
+		{ pattern = "Restores (%d+) mana per 5 sec%.", effect = "MANAREG" },
+		{ pattern = "Restores (%d+) mana every 5 sec%.", effect = "MANAREG" },
+		{ pattern = "+(%d+) ranged Attack Power%.", effect = "RANGEDATTACKPOWER" },
 		{ pattern = "+(%d+) All Stats%.", effect = {"ARCANERES", "FIRERES", "FROSTRES", "NATURERES", "SHADOWRES"} },
+		{ pattern = "Increases your health and mana by (%d+)。",	effect = {"MANAREG","HEALTHREG"} },
 		{ pattern = "Increases your chance to block attacks with a shield by (%d+)%%%.", effect = "TOBLOCK" },
 		{ pattern = "Increases the block value of your shield by (%d+)%.", effect = "BLOCK" },
+		{ pattern = "Improves your chance to hit by (%d+)%%%.", effect = "TOHIT" },
 		{ pattern = "Increases your chance to dodge an attack by (%d+)%%%.", effect = "DODGE" },
 		{ pattern = "Increases your chance to parry an attack by (%d+)%%%.", effect = "PARRY" },
 		{ pattern = "Improves your chance to get a critical strike with spells by (%d+)%%%.", effect = "SPELLCRIT" },
-		{ pattern = "Improves your chance to get a critical strike by (%d+)%%%.", effect = "CRIT" },
+		{ pattern = "Improves your chance to hit and hit with spells by (%d+)%%%. ",	effect = {"SPELLTOHIT","TOHIT","RANGEDTOHIT"} },
+
+		{ pattern = "Improves your chance to get a critical strike by (%d+)%%%.", effect = "CRIT" }, 
+		{ pattern = "Decreases the magical resistances of your spell targets by (%d+)%.",	effect = "SPELLPENETRATION" },
+		{ pattern = "Increases the healing done by your Flash of Light by up to (%d+).", effect = "FLASHHOLYLIGHTHEAL"},
+		{ pattern = "Increases healing done by Lesser Healing Wave by up to (%d+)%.", effect = "LESSERHEALWAVE"},
+		{ pattern = "Increases damage done by Chain Lightning and Lightning Bolt by up to (%d+)%.", effect = {"CHAINLIGHTNING","LIGHTNINGBOLT"}},
+		{ pattern = "Increases damage done by Earth Shock, Flame Shock, and Frost Shock by up to (%d+)%.", effect = {"EARTHSHOCK","FLAMESHOCK","FROSTSHOCK"}}, 
+		{ pattern = "Improves your chance to get a critical strike with Nature spells by (%d+)%%%.", effect = "NATURECRIT" },
 		{ pattern = "Increases damage done by Arcane spells and effects by up to (%d+)%.", effect = "ARCANEDMG" },
 		{ pattern = "Increases damage done by Fire spells and effects by up to (%d+)%.", effect = "FIREDMG" },
 		{ pattern = "Increases damage done by Frost spells and effects by up to (%d+)%.", effect = "FROSTDMG" },
@@ -113,24 +154,45 @@ function SC_Localization_enUS()
 		{ pattern = "Increases damage done by Shadow spells and effects by up to (%d+)%.", effect = "SHADOWDMG" },
 		{ pattern = "Increases healing done by spells and effects by up to (%d+)%.", effect = "HEAL" },
 		{ pattern = "Increases damage and healing done by magical spells and effects by up to (%d+)%.", effect = {"HEAL", "DMG"} },
-		{ pattern = "Increases damage done to Undead by magical spells and effects by up to (%d+)", effect = "DMGUNDEAD" },
 		{ pattern = "+(%d+) Attack Power when fighting Undead.", effect = "ATTACKPOWERUNDEAD" },
-		{ pattern = "Restores (%d+) health per 5 sec%.", effect = "HEALTHREG" },
-		{ pattern = "Restores (%d+) health every 5 sec%.", effect = "HEALTHREG" },
-		{ pattern = "Restores (%d+) mana per 5 sec%.", effect = "MANAREG" },
-		{ pattern = "Restores (%d+) mana every 5 sec%.", effect = "MANAREG" },
-		{ pattern = "Improves your chance to hit by (%d+)%%%.", effect = "TOHIT" },
-		{ pattern = "Improves your chance to hit with spells by (%d+)%%%.", effect = "SPELLTOHIT" },
-		{ pattern = "Increased Defense +(%d+)%.", effect = "DEFENSE" },
 		{ pattern = "Increases the critical effect chance of your Holy spells by (%d+)%%%.", effect = "HOLYCRIT" },
 		{ pattern = "Improves your chance to get a critical strike with Holy spells by (%d+)%%%.", effect = "HOLYCRIT" },
-		{ pattern = "Skinning +(%d+)%.", effect = "SKINNING" },
-		{ pattern = "Increased Fishing +(%d+)%.", effect = "FISHING"},
+		{ pattern = "Increases damage done to Undead by magical spells and effects by up to (%d+)", effect = "DMGUNDEAD" },
+
+
+
+
+		{ pattern = "Improves your chance to hit with spells by (%d+)%%%.", effect = "SPELLTOHIT" },
+		{ pattern = "Increased Defense +(%d+)%.", effect = "DEFENSE" },
+
 		{ pattern = "Decreases the magical resistances of your spell targets by (%d+)%.", effect = "DETARRES" },
-		{ pattern = "Improves your chance to get a critical strike with Nature spells by (%d+)%%%.", effect = "NATURECRIT" },
-		{ pattern = "Increases healing done by Lesser Healing Wave by up to (%d+)%.", effect = "LESSERHEALWAVE"},
-		{ pattern = "Increases damage done by Chain Lightning and Lightning Bolt by up to (%d+)%.", effect = {"CHAINLIGHTNING","LIGHTNINGBOLT"}},
-		{ pattern = "Increases damage done by Earth Shock, Flame Shock, and Frost Shock by up to (%d+)%.", effect = {"EARTHSHOCK","FLAMESHOCK","FROSTSHOCK"}}, 
+
+
+		{ pattern = "Increases your spell damage by up to 150 and healing done by up to 300.", effect = {"DMG", "HEAL"}, value = {150, 300}}, -- thanks i8i8@mop
+		{ pattern = "Increases spell damage by up to 150 and healing done by up to 300.", effect = {"DMG", "HEAL"}, value = {150, 300}},
+		{ pattern = "Increases attack power by (%d+) while in Cat Form, Bear Form, or Dire Bear Form.", effect = {"BEARAP","CATAP"}},
+		{ pattern = "Increases your effective stealth level by 1%.", effect = "STEALTH", value = 5},
+		{ pattern = "Increases your effective stealth level.", effect = "STEALTH", value = 8},
+		{ pattern = "Increases your attack speed and casting speed by (%d+)%%.", effect = "HASTE"},
+		{ pattern = "Increases your attack and casting speed by (%d+)%%.", effect = "HASTE"},
+		{ pattern = "Your attacks ignore (%d+) of the target's armor.", effect = "ARMORPENETRATION"},
+		{ pattern = "Reduces the magic resistance of your spell target by (%d+).", effect = "SPELLPENETRATION"},
+		{ pattern = "(%d+)%% of damage dealt is returned as healing.", effect = "LIFEDRAIN"},
+		{ pattern = "Increases Two-Handed Sword skill by (%d+).", effect = "WEAPONSKILL_TWOHAND_SWORD"},
+		{ pattern = "Increases Two-Handed Axe skill by (%d+).", effect = "WEAPONSKILL_TWOHAND_AXE"},
+		{ pattern = "Increases Two-Handed Mace skill by (%d+).", effect = "WEAPONSKILL_TWOHAND_MACE"},
+		{ pattern = "Increases One-Handed Sword skill by (%d+).", effect = "WEAPONSKILL_ONEHAND_SWORD"},
+		{ pattern = "Increases One-Handed Axe skill by (%d+).", effect = "WEAPONSKILL_ONEHAND_AXE"},
+		{ pattern = "Increases One-Handed Mace skill by (%d+).", effect = "WEAPONSKILL_ONEHAND_MACE"},
+		{ pattern = "Increases Unarmed Combat skill by (%d+).", effect = "WEAPONSKILL_FIST"},
+		{ pattern = "Increases Dagger skill by (%d+).", effect = "WEAPONSKILL_DAGGER"},
+		{ pattern = "Increases Polearms skill by (%d+).", effect = "WEAPONSKILL_POLEARMS"},
+		{ pattern = "Increases the critical strike chance of your ranged weapons by (%d+)%%.", effect = "RANGEDCRIT"},
+		{ pattern = "Increases your chance to hit with spells by 2%%. Increases your spell critical strike chance by 2%%. Increases your spell damage by 40.", effect = {"SPELLTOHIT", "SPELLCRIT", "DMG"}, value = {2, 2, 40}},
+		{ pattern = "Maintains (%d+)%% of your mana regeneration rate while casting.", effect = "CASTING_MANA_REG"},
+		{ pattern = "Allows you to maintain (%d+)%% of your mana regeneration rate while casting.", effect = "CASTING_MANA_REG"},
+		{ pattern = "Allows you to retain (%d+)%% of your mana regeneration rate while casting.", effect = "CASTING_MANA_REG"},
+
 	};
 
 
@@ -170,13 +232,15 @@ function SC_Localization_enUS()
 		["Herbalism"]			= "HERBALISM",
 		["Skinning"]			= "SKINNING",
 
-		["Attack Power"] 			= "ATTACKPOWER",
-		["Dodge"] 			= "DODGE",
+		["Attack Power"] 			= {"ATTACKPOWER", "RANGEDATTACKPOWER"},
 		["Block"]			= "BLOCK",
 		["Blocking"]			= "BLOCK",
+		["Dodge"] 			= "DODGE",
+		
 		["Hit"] 			= "TOHIT",
 		["Spell Hit"]			= "SPELLTOHIT",
 		["Ranged Attack Power"]		= "RANGEDATTACKPOWER",
+		["Melee Attack Power"]	= "ATTACKPOWER",
 		["health every 5 sec"]		= "HEALTHREG",
 		["Healing Spells"] 		= "HEAL",
 		["Increases Healing"] 		= "HEAL",
@@ -192,15 +256,21 @@ function SC_Localization_enUS()
 		["Reinforced Armor"]			= "ENARMOR",
 		["Defense"]			= "DEFENSE",
 		["Increased Defense"]		= "DEFENSE",
+		["Attack Power Undead.*$"]	= "ATTACKPOWERUNDEAD",	
+
 	};
 
 	STATCOMPARE_OTHER_PATTERNS = {
 		{ pattern = "(%d+) Block", effect = "BLOCK"},
 		{ pattern = "(%d+) Armor", effect = "ARMOR"},
+		{ pattern = "Block +(%d+)%%",		effect = "TOBLOCK"},	 
 		{ pattern = "Health Regen (%d+) per 5 sec%.", effect = "HEALTHREG" },
 		{ pattern = "Health Regen (%d+) every 5 sec%.", effect = "HEALTHREG" },
 		{ pattern = "Mana Regen (%d+) per 5 sec%.", effect = "MANAREG" },
 		{ pattern = "Mana Regen (%d+) every 5 sec%.", effect = "MANAREG" },
+		{ pattern = "Zandalar Signet of Mojo",		effect = {"DMG", "HEAL"}, value = 18 },
+		{ pattern = "Zandalar Signet of Serenity",		effect = "HEAL", value = 33 },
+		{ pattern = "Zandalar Signet of Might",		effect = {"ATTACKPOWER", "RANGEDATTACKPOWER"}, value = 30 },
 		{ pattern = "Minor Wizard Oil", effect = "DMG", value = 8 },
 		{ pattern = "Lesser Wizard Oil", effect = "DMG", value = 16 },
 		{ pattern = "Wizard Oil", effect = "DMG", value = 24 },
@@ -209,6 +279,18 @@ function SC_Localization_enUS()
 		{ pattern = "Lesser Mana Oil", effect = "MANAREG", value = 8 },
 		{ pattern = "Brilliant Mana Oil", effect = { "MANAREG", "HEAL"}, value = {12, 25} },
 		{ pattern = "Eternium Line", effect = "FISHING", value = 5 },
+		{ pattern = "Increased Stealth", effect = "STEALTH", value = 5},
+		{ pattern = "Spell Damage %+15 And %+1%% Spell Critical Strike", effect = {"DMG", "HEAL", "SPELLCRIT"}, value = {15, 15, 1}},
+		{ pattern = "Health Regen 31，Mana Regen 5 per 5 sec%.", effect = {"HEAL", "MANAREG"}, value = {31, 5}},
+		{ pattern = "Stamina %+16 And %+100 ", effect = {"STA", "ENARMOR"}, value = {16, 100}},
+		{ pattern = "Attack Power %+26 And %+1%% Critical Strike", effect = {"ATTACKPOWER", "RANGEDATTACKPOWER", "CRIT"}, value = {26, 26, 1}},
+
+		{ pattern = "%+(%d+)%% Haste",		effect = "HASTE" },	
+		{ pattern = "Haste %+(%d+)%%",		effect = "HASTE" },
+		{ pattern = "%+(%d+) Armor Penetration",		effect = "ARMORPENETRATION" },
+		{ pattern = "Armor Penetration %+(%d+)",		effect = "ARMORPENETRATION" },
+		{ pattern = "%+(%d+) Spell Penetration",		effect = "SPELLPENETRATION" },
+		{ pattern = "%+(%d+)%% Life Drain",		effect = "LIFEDRAIN" },
 	};
 
 	-- Spells Related
@@ -283,4 +365,5 @@ function SC_Localization_enUS()
 	STATCOMPARE_SHADOW_BOLT		= "Shadow Bolt";
 	STATCOMPARE_SHADOWBURN		= "Shadow Burn";
 	STATCOMPARE_SOUL_FIRE		= "Soul Fire";
+
 end

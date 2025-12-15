@@ -176,19 +176,27 @@ end
 function StatScanner_AddValue(effect, value)
 	local i,e;
 	if(type(effect) == "string") then
-		if(StatScanner_bonuses[effect]) then
-			StatScanner_bonuses[effect] = StatScanner_bonuses[effect] + value;
-		else
-			StatScanner_bonuses[effect] = value;
+		if effect == "HASTE" then
+			if(StatScanner_bonuses[effect]) then
+				StatScanner_bonuses[effect] = ((StatScanner_bonuses[effect] / 100 + 1) * ( value / 100+1) - 1 ) * 100 ; 
+			else
+				StatScanner_bonuses[effect] = value ;
+			end
+		else 
+			if(StatScanner_bonuses[effect]) then
+				StatScanner_bonuses[effect] = StatScanner_bonuses[effect] + value;
+			else
+				StatScanner_bonuses[effect] = value;
+			end
 		end
 	else 
 	-- list of effects
 		if(type(value) == "table") then
-			for i,e in effect do
+			for i,e in pairs(effect) do
 				StatScanner_AddValue(e, value[i]);
 			end
 		else
-			for i,e in effect do
+			for i,e in pairs(effect) do
 				StatScanner_AddValue(e, value);
 			end
 		end
@@ -241,7 +249,7 @@ function StatScanner_ScanPassive(line)
 
 	found = false;
 	line = string.gsub( line, "^%s+", "" );
-	for i,p in STATCOMPARE_EQUIP_PATTERNS do
+	for i,p in pairs(STATCOMPARE_EQUIP_PATTERNS) do
 		start, _, value = string.find(line, "^" .. p.pattern);
 		if(start) then
 			if(p.value) then
@@ -313,12 +321,12 @@ function StatScanner_ScanToken(token, value)
 	else
 		s1 = nil;
 		s2 = nil;
-		for i,p in STATCOMPARE_S1 do
+		for i,p in pairs(STATCOMPARE_S1) do
 			if(string.find(token,p.pattern,1,1)) then
 				s1 = p.effect;
 			end
 		end	
-		for i,p in STATCOMPARE_S2 do
+		for i,p in pairs(STATCOMPARE_S2) do
 			if(string.find(token,p.pattern,1,1)) then
 				s2 = p.effect;
 			end
@@ -336,7 +344,7 @@ function StatScanner_ScanOther(line)
 	local i, p, value, start, found;
 	line = string.gsub( line, "^%s+", "" );
 	found = false;
-	for i,p in STATCOMPARE_OTHER_PATTERNS do
+	for i,p in pairs(STATCOMPARE_OTHER_PATTERNS) do
 		start, _, value = string.find(line, "^" .. p.pattern);
 
 		if(start) then
@@ -354,7 +362,7 @@ end
 
 function StatScanner_ScanSetPropertyAll()
 	local found = false;
-	for i,v in StatScanner_setcount do
+	for i,v in pairs(StatScanner_setcount) do
 		for j=1, getn(StatScanner_setsproperty) do
 			if(i == StatScanner_setsproperty[j].setsname) then
 				if(v.count >= StatScanner_setsproperty[j].count) then
